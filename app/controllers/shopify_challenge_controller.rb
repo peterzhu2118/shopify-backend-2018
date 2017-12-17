@@ -1,0 +1,2 @@
+class ShopifyChallengeController < ApplicationController
+end

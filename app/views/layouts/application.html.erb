@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShopifyBackend</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Shopify Backend</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#">Page 1</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://peterzhu.ca">Website</a></li>
+          <li><a href="https://peterzhu.ca/resume.pdf">Resume</a></li>
+          <li><a href="https://linkedin.com/peterzhu2118">LinkedIn</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <% unless flash[:notice].nil? %>
+      <div class="alert alert-info" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%  unless flash[:error].nil? %>
+      <div class="alert alert-danger" role="alert">
+          <%= flash[:error] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+    <hr>
+
+    © 2017 <a href="https://peterzhu.ca">Peter Zhu</a>
+  </body>
+</html>
