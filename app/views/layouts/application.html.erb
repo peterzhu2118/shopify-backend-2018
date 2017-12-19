@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShopifyBackend</title>
+    <title>Shopify Backend Challenge</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,39 +9,50 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Shopify Backend</a>
+    <div class="page-container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Shopify Backend</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <% if current_page? controller: 'welcome', action: 'index' %>
+              <li class="active"><a href="/">Home</a></li>
+            <% else %>
+              <li><a href="/">Home</a></li>
+            <% end %>
+
+            <% if current_page? controller: 'shopify_challenge', action: 'index' %>
+              <li class="active"><a href="/app">App</a></li>
+            <% else %>
+              <li><a href="/app">App</a></li>
+            <% end %>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://peterzhu.ca">Website</a></li>
+            <li><a href="https://peterzhu.ca/resume.pdf">Resume</a></li>
+            <li><a href="https://linkedin.com/in/peterzhu2118">LinkedIn</a></li>
+          </ul>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#">Page 1</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="https://peterzhu.ca">Website</a></li>
-          <li><a href="https://peterzhu.ca/resume.pdf">Resume</a></li>
-          <li><a href="https://linkedin.com/peterzhu2118">LinkedIn</a></li>
-        </ul>
-      </div>
-    </nav>
+      </nav>
 
-    <% unless flash[:notice].nil? %>
-      <div class="alert alert-info" role="alert">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+      <% unless flash[:notice].nil? %>
+        <div class="alert alert-info" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
 
-    <%  unless flash[:error].nil? %>
-      <div class="alert alert-danger" role="alert">
-          <%= flash[:error] %>
-      </div>
-    <% end %>
+      <%  unless flash[:error].nil? %>
+        <div class="alert alert-danger" role="alert">
+            <%= flash[:error] %>
+        </div>
+      <% end %>
 
-    <%= yield %>
+      <%= yield %>
 
-    <hr>
+      <hr>
 
-    © 2017 <a href="https://peterzhu.ca">Peter Zhu</a>
+      © 2017 <a href="https://peterzhu.ca">Peter Zhu</a>
+    </div>
   </body>
 </html>

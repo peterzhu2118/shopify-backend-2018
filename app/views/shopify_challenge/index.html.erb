@@ -1,0 +1,13 @@
+<%= form_tag "/app" do %>
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-primary active">
+      <%= radio_button_tag "id", "1", true, class: "btn btn-primary active" %>Problem ID 1
+    </label>
+    <label class="btn btn-primary">
+      <%= radio_button_tag "id", "2", false, class: "btn btn-primary active" %>Problem ID 2
+    </label>
+  </div>
+  <br><br>
+
+  <%= submit_tag "Go!", class: "btn btn-success" %>
+<% end %>
