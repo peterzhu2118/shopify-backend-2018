@@ -12,15 +12,11 @@ module GraphCycle
     menu = { valid_menus: [], invalid_menus: [] }
 
     parents.each do |parent|
-      if nodes_in_cycle.include? parent
-        cycles.each do |cycle|
-          if cycle.include? parent
-            menu[:invalid_menus] << { root_id: parent, children: cycle }
-          end
-        end
-      else
-        children = dfs_traverse_children(graph, parent)
+      children = dfs_traverse_children(graph, parent, Set.new)
 
+      if nodes_in_cycle.include? parent
+        menu[:invalid_menus] << { root_id: parent, children: children }
+      else
         menu[:valid_menus] << { root_id: parent, children: children }
       end
     end
@@ -47,13 +43,16 @@ module GraphCycle
 
   private
 
-  def dfs_traverse_children(graph, curr_node)
+  def dfs_traverse_children(graph, curr_node, visited)
     children = Set.new
 
     child_nodes = graph[curr_node]
 
     child_nodes.each do |child|
-      children += dfs_traverse_children(graph, child)
+      unless visited.include? child
+        visited << child
+        children += dfs_traverse_children(graph, child, visited)
+      end
     end
 
     children += child_nodes
